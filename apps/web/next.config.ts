@@ -4,7 +4,13 @@ import { withExpo } from "@expo/next-adapter";
 const nextConfig: NextConfig = withExpo({
   reactStrictMode: true,
   turbo: false,
-  transpilePackages: ["react-native", "react-native-web", "ui"],
+  transpilePackages: [
+    "react-native",
+    "react-native-web",
+    "ui",
+    "nativewind",
+    "react-native-css-interop",
+  ],
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),

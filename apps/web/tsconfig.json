@@ -5,16 +5,12 @@
     "incremental": true,
     "isolatedModules": true,
     "jsx": "preserve",
+    "jsxImportSource": "nativewind",
     "plugins": [
       {
         "name": "next"
       }
     ]
   },
-  "include": [
-    "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"]
 }
