@@ -1,0 +1,29 @@
+{
+  "name": "@kdn0325/create-expo-next-monorepo",
+  "version": "1.0.2",
+  "description": "CLI tool for creating a monorepo template with Expo, Next.js and NativeWind for cross-platform applications",
+  "main": "index.js",
+  "bin": {
+    "create-expo-next-monorepo": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "expo",
+    "next.js",
+    "nativewind",
+    "monorepo",
+    "template",
+    "react-native",
+    "cross-platform"
+  ],
+  "author": "kdn0325",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "execa": "^5.1.1",
+    "fs-extra": "^10.1.0",
+    "inquirer": "^8.2.4"
+  }
+}
