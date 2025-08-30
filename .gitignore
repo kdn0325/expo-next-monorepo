@@ -1,0 +1,7 @@
+# turborepo cache and outputs
+.turbo
+node_modules
+dist
+build
+.next
+.expo
