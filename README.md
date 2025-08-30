@@ -1,78 +1,90 @@
 # Expo Next Monorepo
 
-> 하나의 코드베이스에서 iOS, Android, 웹을 지원하는 모노레포 구조의 크로스 플랫폼 애플리케이션
+> A cross-platform application with a monorepo structure supporting iOS, Android, and web from a single codebase.
 
-이 프로젝트는 Expo, Next.js, NativeWind를 통합한 모노레포 템플릿으로, 하나의 코드베이스에서 모바일(iOS/Android)과 웹 애플리케이션을 동시에 개발할 수 있는 환경을 제공합니다.
+This project is a monorepo template integrating Expo, Next.js, and NativeWind, providing an environment to simultaneously develop mobile (iOS/Android) and web applications from a single codebase.
 
-## 기술 스택
+## Tech Stack
 
-- **모노레포 관리**: Turborepo
-- **모바일 앱**: Expo (React Native)
-- **웹 앱**: Next.js
-- **스타일링**: NativeWind (Tailwind CSS for React Native)
-- **언어**: TypeScript
+- **Monorepo Management**: Turborepo v2.5.6
+- **Mobile App**: Expo v53.0.22 (React Native v0.79.6)
+- **Web App**: Next.js v15.5.2
+- **Styling**: NativeWind (Tailwind CSS v3.4.1 for React Native)
+- **Language**: TypeScript v5.9.2
 
-## 프로젝트 구조
+## Project Structure
 
 ```
 expo-next-monorepo/
 ├── apps/
-│   ├── native/          # Expo (React Native) 앱
-│   └── web/             # Next.js 웹 앱
+│   ├── native/          # Expo (React Native) app
+│   └── web/             # Next.js web app
 ├── packages/
-│   ├── app/             # 공유 애플리케이션 로직
-│   └── ui/              # 공유 UI 컴포넌트
+│   ├── app/             # Shared application logic
+│   └── ui/              # Shared UI components
 ├── package.json
 ├── tsconfig.json
 └── turbo.json
 ```
 
-- **apps/native**: Expo를 사용한 iOS/Android 애플리케이션
-- **apps/web**: Next.js를 사용한 웹 애플리케이션
-- **packages/ui**: 모바일과 웹에서 공유되는 UI 컴포넌트
-- **packages/app**: 비즈니스 로직, API 호출 등 공유 코드
+- **apps/native**: iOS/Android applications using Expo
+- **apps/web**: Web application using Next.js
+- **packages/ui**: UI components shared between mobile and web
+- **packages/app**: Shared code including business logic, API calls, etc.
 
-## 시작하기
+## Getting Started
 
-### 필수 조건
+### Using NPX (Recommended)
 
-- Node.js (lts 이상)
-- Yarn
-- iOS 개발: XCode & CocoaPods
-- Android 개발: Android Studio
-
-### 설치
+You can quickly create a new project using this template with the following command:
 
 ```bash
-# 저장소 클론
+npx @kdn0325/create-expo-next-monorepo
+```
+
+This will guide you through setting up a new project with all the necessary configurations.
+
+### Manual Installation
+
+#### Prerequisites
+
+- Node.js (LTS or higher)
+- Yarn
+- iOS Development: XCode & CocoaPods
+- Android Development: Android Studio
+
+### Installation
+
+```bash
+# Clone repository
 git clone https://github.com/kdn0325/expo-next-monorepo.git
 cd expo-next-monorepo
 
-# 의존성 설치
+# Install dependencies
 yarn install
 ```
 
-### 개발 서버 실행
+### Running Development Servers
 
 ```bash
-# 웹 앱 개발 서버 실행
+# Run web app development server
 yarn workspace web dev
 
-# 모바일 앱 개발 서버 실행
+# Run mobile app development server
 yarn workspace native start
 ```
 
-## 기능
+## Features
 
-- **코드 공유**: 모바일과 웹 간에 비즈니스 로직과 UI 컴포넌트 공유
-- **일관된 스타일링**: NativeWind를 통해 Tailwind CSS 문법으로 모바일과 웹에서 일관된 스타일링
-- **타입 안전성**: TypeScript를 통한 정적 타입 검사
-- **빠른 개발**: Turbo를 통한 빠른 빌드 및 개발 속도
+- **Code Sharing**: Share business logic and UI components between mobile and web
+- **Consistent Styling**: Use Tailwind CSS syntax for consistent styling across mobile and web through NativeWind
+- **Type Safety**: Static type checking with TypeScript
+- **Rapid Development**: Fast build and development speeds with Turborepo
 
-## NativeWind 사용법
+## NativeWind Usage
 
 ```tsx
-// 예시 컴포넌트
+// Example component
 import { View, Text } from "react-native";
 
 export function MyComponent() {
@@ -84,14 +96,14 @@ export function MyComponent() {
 }
 ```
 
-## 기여하기
+## Contributing
 
-1. 이 저장소를 포크합니다
-2. 새 브랜치를 생성합니다 (`git checkout -b feature/amazing-feature`)
-3. 변경사항을 커밋합니다 (`git commit -m 'feat: 새로운 기능 추가'`)
-4. 브랜치에 푸시합니다 (`git push origin feature/amazing-feature`)
-5. Pull Request를 제출합니다
+1. Fork this repository
+2. Create a new branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Submit a Pull Request
 
-## 라이센스
+## License
 
-이 프로젝트는 MIT 라이센스를 따릅니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
