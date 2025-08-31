@@ -40,7 +40,7 @@ export const Text = React.forwardRef<
     },
     ref
   ) => {
-    // 기본 스타일 매핑
+    // Basic style mapping
     const variantStyles = {
       h1: "text-4xl leading-tight",
       h2: "text-3xl leading-tight",
