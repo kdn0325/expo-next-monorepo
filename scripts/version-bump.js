@@ -1,16 +1,16 @@
 /**
- * 버전 업데이트 스크립트
+ * Version Update Script
  *
- * 사용법:
- * - 패치 버전 업데이트: node scripts/version-bump.js patch
- * - 마이너 버전 업데이트: node scripts/version-bump.js minor
- * - 메이저 버전 업데이트: node scripts/version-bump.js major
+ * Usage:
+ * - Patch version update: node scripts/version-bump.js patch
+ * - Minor version update: node scripts/version-bump.js minor
+ * - Major version update: node scripts/version-bump.js major
  */
 
 const fs = require("fs");
 const path = require("path");
 
-// 루트 package.json과 CLI package.json 경로
+// Root package.json and CLI package.json paths
 const rootPackagePath = path.join(__dirname, "..", "package.json");
 const cliPackagePath = path.join(
   __dirname,
@@ -19,7 +19,7 @@ const cliPackagePath = path.join(
   "package.json"
 );
 
-// 버전 타입 (patch, minor, major)
+// Version type (patch, minor, major)
 const versionType = process.argv[2];
 
 if (!["patch", "minor", "major"].includes(versionType)) {
@@ -29,15 +29,15 @@ if (!["patch", "minor", "major"].includes(versionType)) {
   process.exit(1);
 }
 
-// package.json 파일 읽기
+// Read package.json files
 const rootPackage = JSON.parse(fs.readFileSync(rootPackagePath, "utf8"));
 const cliPackage = JSON.parse(fs.readFileSync(cliPackagePath, "utf8"));
 
-// 현재 버전 파싱
+// Parse current version
 const currentVersion = rootPackage.version;
 const [major, minor, patch] = currentVersion.split(".").map(Number);
 
-// 새 버전 계산
+// Calculate new version
 let newVersion;
 if (versionType === "patch") {
   newVersion = `${major}.${minor}.${patch + 1}`;
@@ -49,11 +49,11 @@ if (versionType === "patch") {
 
 console.log(`Updating version from ${currentVersion} to ${newVersion}`);
 
-// 루트 package.json 업데이트
+// Update root package.json
 rootPackage.version = newVersion;
 fs.writeFileSync(rootPackagePath, JSON.stringify(rootPackage, null, 2) + "\n");
 
-// CLI package.json 업데이트
+// Update CLI package.json
 cliPackage.version = newVersion;
 fs.writeFileSync(cliPackagePath, JSON.stringify(cliPackage, null, 2) + "\n");
 
