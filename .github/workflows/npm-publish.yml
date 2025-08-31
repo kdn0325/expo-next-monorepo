@@ -5,9 +5,15 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  packages: write
+
 jobs:
   version-check:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version-check.outputs.version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -49,7 +55,9 @@ jobs:
 
       - name: Get version from previous job
         id: get-version
-        run: echo "version=${{ needs.version-check.outputs.version }}" >> $GITHUB_OUTPUT
+        run: |
+          echo "Using version: ${{ needs.version-check.outputs.version }}"
+          echo "version=${{ needs.version-check.outputs.version }}" >> $GITHUB_OUTPUT
 
       - name: Install dependencies
         run: cd create-expo-next-monorepo && yarn install --frozen-lockfile
@@ -59,12 +67,12 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+      # GitHub 릴리스 생성 방법 변경
+      - name: Create Release
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: v${{ steps.get-version.outputs.version }}
-          name: Release v${{ steps.get-version.outputs.version }}
+          tag: v${{ needs.version-check.outputs.version }}
+          name: Release v${{ needs.version-check.outputs.version }}
           draft: false
           prerelease: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
