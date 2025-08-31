@@ -15,17 +15,17 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: "20.x"
 
       - name: Check versions match
         id: version-check
         run: |
           ROOT_VERSION=$(node -p "require('./package.json').version")
           CLI_VERSION=$(node -p "require('./create-expo-next-monorepo/package.json').version")
-          
+
           echo "Root package.json version: $ROOT_VERSION"
           echo "CLI package.json version: $CLI_VERSION"
-          
+
           if [ "$ROOT_VERSION" != "$CLI_VERSION" ]; then
             echo "Version mismatch! Root version ($ROOT_VERSION) does not match CLI version ($CLI_VERSION)"
             exit 1
@@ -44,26 +44,27 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
-          registry-url: 'https://registry.npmjs.org'
+          node-version: "20.x"
+          registry-url: "https://registry.npmjs.org"
 
       - name: Get version from previous job
         id: get-version
         run: echo "version=${{ needs.version-check.outputs.version }}" >> $GITHUB_OUTPUT
-      
+
       - name: Install dependencies
-        run: cd create-expo-next-monorepo && npm ci
-        
+        run: cd create-expo-next-monorepo && yarn install --frozen-lockfile
+
       - name: Publish to NPM
-        run: cd create-expo-next-monorepo && npm publish --access public
+        run: cd create-expo-next-monorepo && yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          
+
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.get-version.outputs.version }}
-          name: Release v${{ steps.get-version.outputs.version }}
+          release_name: Release v${{ steps.get-version.outputs.version }}
           draft: false
           prerelease: false
-          token: ${{ secrets.GITHUB_TOKEN }}
