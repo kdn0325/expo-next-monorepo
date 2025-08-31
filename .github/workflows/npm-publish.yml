@@ -67,7 +67,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # GitHub 릴리스 생성 방법 변경
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
