@@ -1,0 +1,70 @@
+name: Publish Package to NPM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  version-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Check versions match
+        id: version-check
+        run: |
+          ROOT_VERSION=$(node -p "require('./package.json').version")
+          CLI_VERSION=$(node -p "require('./create-expo-next-monorepo/package.json').version")
+          
+          echo "Root package.json version: $ROOT_VERSION"
+          echo "CLI package.json version: $CLI_VERSION"
+          
+          if [ "$ROOT_VERSION" != "$CLI_VERSION" ]; then
+            echo "Version mismatch! Root version ($ROOT_VERSION) does not match CLI version ($CLI_VERSION)"
+            exit 1
+          else
+            echo "Versions match: $ROOT_VERSION"
+            echo "version=$ROOT_VERSION" >> $GITHUB_OUTPUT
+          fi
+
+  publish-npm:
+    needs: version-check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Get version from previous job
+        id: get-version
+        run: echo "version=${{ needs.version-check.outputs.version }}" >> $GITHUB_OUTPUT
+      
+      - name: Install dependencies
+        run: cd create-expo-next-monorepo && npm ci
+        
+      - name: Publish to NPM
+        run: cd create-expo-next-monorepo && npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.get-version.outputs.version }}
+          release_name: Release v${{ steps.get-version.outputs.version }}
+          draft: false
+          prerelease: false
