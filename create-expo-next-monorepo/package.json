@@ -1,6 +1,6 @@
 {
   "name": "@kdn0325/create-expo-next-monorepo",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CLI tool for creating a monorepo template with Expo, Next.js and NativeWind for cross-platform applications",
   "main": "index.js",
   "bin": {
