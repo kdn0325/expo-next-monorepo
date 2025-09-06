@@ -60,7 +60,7 @@ const getTextColor = (colorType: TextProps["color"]): TextStyle => {
     case "dark":
       return { color: colors.dark.default };
     default:
-      return { color: colors.neutral[900] }; // 기본 색상
+      return { color: colors.neutral[900] }; // default color
   }
 };
 
