@@ -47,11 +47,7 @@ export const colors = {
     light: "#4ade80",
     dark: "#15803d",
   },
-  warning: {
-    default: "#f59e0b",
-    light: "#fbbf24",
-    dark: "#d97706",
-  },
+  warning: colors.accent,
   info: {
     default: "#3b82f6",
     light: "#60a5fa",
