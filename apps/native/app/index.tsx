@@ -3,7 +3,7 @@ import { View, Text, Button } from "ui";
 import { ScrollView, Alert } from "react-native";
 
 export default function Index() {
-  // 버튼 press 이벤트 핸들러
+  // Button press event handler
   const handlePress = (buttonName: string) => {
     Alert.alert(`${buttonName} 버튼이 클릭되었습니다!`);
   };
