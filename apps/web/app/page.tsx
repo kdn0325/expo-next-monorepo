@@ -1,15 +1,20 @@
 "use client";
 
-import { View, Text } from "ui";
+import { View, Text, Button } from "ui";
 
 export default function Home() {
+  // 버튼 클릭 이벤트 핸들러
+  const handleButtonClick = (buttonName: string) => {
+    alert(`${buttonName} 버튼이 클릭되었습니다!`);
+  };
+
   return (
-    <View className="flex-1 justify-center items-center p-6 bg-gray-100 dark:bg-gray-900">
+    <View className="flex-1 justify-center items-center p-6 bg-white">
       <Text variant="h1" color="primary" weight="bold" className="mb-8">
-        Text 컴포넌트 테스트
+        UI 컴포넌트 테스트
       </Text>
 
-      <View className="w-full max-w-2xl space-y-8 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md">
+      <View className="w-full max-w-2xl space-y-8 bg-white  p-6 rounded-xl shadow-md">
         <View className="space-y-4">
           <Text variant="h2" color="accent" className="border-b pb-2">
             텍스트 변형(Variants)
@@ -94,6 +99,233 @@ export default function Home() {
           <Text variant="small" color="success" className="italic">
             성공 안내 텍스트
           </Text>
+        </View>
+      </View>
+
+      {/* 버튼 컴포넌트 테스트 섹션 */}
+      <Text variant="h1" color="primary" weight="bold" className="mb-8 mt-12">
+        Button 컴포넌트 테스트
+      </Text>
+
+      <View className="w-full max-w-2xl space-y-8 bg-white  p-6 rounded-xl shadow-md">
+        <View className="space-y-4">
+          <Text variant="h2" color="accent" className="border-b pb-2">
+            버튼 변형(Variants)
+          </Text>
+
+          <View className="space-y-6">
+            <Button
+              variant="default"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Default")}
+            >
+              <Text color="white" weight="medium" className="text-white">
+                Default 버튼
+              </Text>
+            </Button>
+
+            <Button
+              variant="primary"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Primary")}
+            >
+              <Text color="white" weight="medium" className="text-white">
+                Primary 버튼
+              </Text>
+            </Button>
+
+            <Button
+              variant="secondary"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Secondary")}
+            >
+              <Text color="white" weight="medium" className="text-white">
+                Secondary 버튼
+              </Text>
+            </Button>
+
+            <Button
+              variant="outline"
+              color="primary"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Outline")}
+            >
+              <Text color="primary" weight="medium">
+                Outline 버튼
+              </Text>
+            </Button>
+
+            <Button
+              variant="ghost"
+              color="primary"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Ghost")}
+            >
+              <Text color="primary" weight="medium">
+                Ghost 버튼
+              </Text>
+            </Button>
+
+            <Button
+              variant="link"
+              color="primary"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Link")}
+            >
+              <Text color="primary" weight="medium">
+                Link 버튼
+              </Text>
+            </Button>
+          </View>
+        </View>
+
+        <View className="space-y-4">
+          <Text variant="h2" color="accent" className="border-b pb-2">
+            버튼 크기(Sizes)
+          </Text>
+
+          <View className="space-y-6">
+            <Button
+              variant="primary"
+              size="sm"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Small")}
+            >
+              <Text color="white" weight="medium" className="text-white">
+                Small 버튼
+              </Text>
+            </Button>
+
+            <Button
+              variant="primary"
+              size="md"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Medium")}
+            >
+              <Text color="white" weight="medium" className="text-white">
+                Medium 버튼
+              </Text>
+            </Button>
+
+            <Button
+              variant="primary"
+              size="lg"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Large")}
+            >
+              <Text color="white" weight="medium" className="text-white">
+                Large 버튼
+              </Text>
+            </Button>
+          </View>
+        </View>
+
+        <View className="space-y-4">
+          <Text variant="h2" color="accent" className="border-b pb-2">
+            버튼 색상(Colors)
+          </Text>
+
+          <View className="space-y-6">
+            <Button
+              variant="default"
+              color="primary"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Primary 색상")}
+            >
+              <Text color="white" weight="medium" className="text-white">
+                Primary 색상
+              </Text>
+            </Button>
+
+            <Button
+              variant="default"
+              color="secondary"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Secondary 색상")}
+            >
+              <Text color="white" weight="medium" className="text-white">
+                Secondary 색상
+              </Text>
+            </Button>
+
+            <Button
+              variant="default"
+              color="accent"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Accent 색상")}
+            >
+              <Text color="white" weight="medium" className="text-white">
+                Accent 색상
+              </Text>
+            </Button>
+
+            <Button
+              variant="default"
+              color="error"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Error 색상")}
+            >
+              <Text color="white" weight="medium" className="text-white">
+                Error 색상
+              </Text>
+            </Button>
+
+            <Button
+              variant="default"
+              color="success"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("Success 색상")}
+            >
+              <Text color="white" weight="medium" className="text-white">
+                Success 색상
+              </Text>
+            </Button>
+          </View>
+        </View>
+
+        <View className="space-y-4 mb-12">
+          <Text variant="h2" color="accent" className="border-b pb-2">
+            상태 예시
+          </Text>
+
+          <View className="space-y-6">
+            <Button
+              variant="primary"
+              disabled
+              className="w-full my-2"
+              onPress={() => handleButtonClick("비활성화")}
+            >
+              <Text
+                color="default"
+                weight="medium"
+                className="text-neutral-500"
+              >
+                비활성화 버튼
+              </Text>
+            </Button>
+
+            <Button
+              variant="outline"
+              color="error"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("에러 테두리")}
+            >
+              <Text color="error" weight="medium">
+                에러 테두리 버튼
+              </Text>
+            </Button>
+
+            <Button
+              variant="ghost"
+              color="success"
+              className="w-full my-2"
+              onPress={() => handleButtonClick("성공 고스트")}
+            >
+              <Text color="success" weight="medium">
+                성공 고스트 버튼
+              </Text>
+            </Button>
+          </View>
         </View>
       </View>
     </View>
