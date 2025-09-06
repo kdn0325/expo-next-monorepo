@@ -3,7 +3,7 @@
 import { View, Text, Button } from "ui";
 
 export default function Home() {
-  // 버튼 클릭 이벤트 핸들러
+  // Button click event handler
   const handleButtonClick = (buttonName: string) => {
     alert(`${buttonName} 버튼이 클릭되었습니다!`);
   };
